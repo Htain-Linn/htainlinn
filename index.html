@@ -1,0 +1,85 @@
+<?php 
+
+
+ $link=mysqli_connect("localhost","root","","aungaung");
+ if ($link===false) {
+ 	die("database connect error".mysqli_connect_error($link));
+ }
+
+/* $table_sql="CREATE TABLE IF NOT EXISTS form (id INT PRIMARY KEY AUTO_INCREMENT NOT NULL, student_id VARCHAR (30), name VARCHAR (100), bod VARCHAR (30),fname VARCHAR(100),class INT, gender VARCHAR(20),address TEXT)";*/
+
+if (isset($_REQUEST['submit'])) {
+	$student_id=$_REQUEST['student_id'];
+	$name=$_REQUEST['name'];
+	$bod=$_REQUEST['bod'];
+	$fname=$_REQUEST['fname'];
+	$class=$_REQUEST['class'];
+	$gender=$_REQUEST['gender'];
+	$address=$_REQUEST['address'];
+
+
+
+	$ins_sql="INSERT INTO form (student_id, name, bod, fname,class,gender,address) VALUES ('$	student_id','$name','$bod','$fname','$class','$gender','$address')";
+	if (mysqli_query($link,$ins_sql)) {
+		echo "succefully";
+	}else{
+		echo "Insert error".mysqli_error($link);
+	}
+}
+
+ ?>
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Student Form</title>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+</head>
+<body>
+	<div class="container-fluid">
+		<div class="row">
+		
+				<div class="col-sm-8">
+					<div class="card">
+						<div class="card-body">
+							<form action="">
+						<h3 class="text-center">Student Form</h3>
+						<!-- start First Name -->
+						<div class="form-group">
+							<label for="FirstName">First Name</label>
+							<input type="text" placeholder="First Name" class="form-control">
+						</div>
+						<!-- End first Name -->
+
+						<!-- start First Name -->
+						<div class="form-group">
+							<label for="LastName">Last Name</label>
+							<input type="text" placeholder="Last Name" class="form-control">
+						</div>
+						<!-- End first Name -->
+
+						<!-- start First Name -->
+						<div class="form-group">
+							<label for="EmailAddress">Email Address</label>
+							<input type="email" placeholder="Email Address" class="form-control">
+						</div>
+						<!-- End first Name -->
+						<!-- start First Name -->
+						<div class="form-group">
+							<label for="Textarea">Message</label>
+							<textarea name="" id="" cols="30" rows="10" class="form-control" placeholder="Enter your Message"></textarea>
+						</div>
+						<!-- End first Name -->
+					</form>
+						</div>
+					</div>
+				</div>
+			</div>
+	
+	</div>
+
+</body>
+</html>
